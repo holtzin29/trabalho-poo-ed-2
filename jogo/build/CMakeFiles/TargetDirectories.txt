@@ -1,0 +1,3 @@
+/home/mholt/jg-poo-2/jogo/build/CMakeFiles/MagoArcano.dir
+/home/mholt/jg-poo-2/jogo/build/CMakeFiles/edit_cache.dir
+/home/mholt/jg-poo-2/jogo/build/CMakeFiles/rebuild_cache.dir
