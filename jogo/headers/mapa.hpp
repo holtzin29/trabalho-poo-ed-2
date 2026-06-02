@@ -3,6 +3,8 @@
 
 #include <SFML/Graphics.hpp>
 #include <vector>
+using namespace std;
+using namespace sf;
 
 enum TileType {
     TILE_GRASS,
@@ -19,8 +21,10 @@ private:
     static const int LARGURA = 20;
     static const int ALTURA = 15;
     static const int TAMANHO_TILE = 32;
+    static const int X_OFFSET = 363;
+    static const int Y_OFFSET = 120;
     
-    std::vector<std::vector<TileType>> tiles;
+    vector<vector<TileType>> tiles;
     int fase;
     
     void gerarFase1();
@@ -31,7 +35,7 @@ private:
 public:
     Mapa(int fase = 1);
     
-    void desenhar(sf::RenderWindow& janela);
+    void desenhar(RenderWindow& janela);
     TileType getTile(int x, int y) const;
     
     int getLargura() const { return LARGURA; }
@@ -39,11 +43,11 @@ public:
     int getTamTile() const { return TAMANHO_TILE; }
     int getFase() const { return fase; }
     
-    sf::Vector2f getPixelPosition(int gridX, int gridY) const;
+    Vector2f getPixelPosition(int gridX, int gridY) const;
     
 private:
-    void desenharTile(sf::RenderWindow& janela, int x, int y, TileType tipo);
-    sf::Color getCorTile(TileType tipo) const;
+    void desenharTile(RenderWindow& janela, int x, int y, TileType tipo);
+    Color getCorTile(TileType tipo) const;
 };
 
 #endif

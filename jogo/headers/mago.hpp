@@ -2,6 +2,7 @@
 #ifndef MAGO_HPP
 #define MAGO_HPP
 #include "personagem.hpp"
+using namespace std;
 
 enum TipoMago { FOGO, AGUA, TERRA, AR };
 
@@ -12,7 +13,7 @@ class Mago : public Personagem {
         TipoMago tipo;
 
     public:
-        Mago(std::string nome, int vidaMax, int manaMax, int velocidade, TipoMago tipo);
+        Mago(string nome, int vidaMax, int manaMax, int velocidade, TipoMago tipo);
 
         // ainda abstrato: cada subclasse popula a skilltree com suas magias
         virtual void inicializarMagias() = 0;

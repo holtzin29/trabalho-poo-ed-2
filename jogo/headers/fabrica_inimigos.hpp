@@ -1,6 +1,7 @@
 #ifndef FABRICA_INIMIGOS_HPP
 #define FABRICA_INIMIGOS_HPP
 #include "inimigo.hpp"
+using namespace std;
 
 class FabricaInimigos {
     private:

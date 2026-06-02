@@ -2,6 +2,8 @@
 #define INIMIGO_PIXEL_HPP
 
 #include "personagem_pixel.hpp"
+using namespace std;
+using namespace sf;
 
 enum TipoInimigoPixel {
     GOBLIN_PIX,
@@ -18,14 +20,14 @@ private:
 public:
     InimigoPixel(int x, int y, TipoMago tipo, TipoInimigoPixel inimigo);
     
-    void desenhar(sf::RenderWindow& janela, int tamanhoTile) override;
+    void desenhar(RenderWindow& janela, int tamanhoTile) override;
     
 private:
-    void desenharGoblin(sf::RenderWindow& janela, const sf::Vector2f& pos);
-    void desenharSkeleton(sf::RenderWindow& janela, const sf::Vector2f& pos);
-    void desenharSpider(sf::RenderWindow& janela, const sf::Vector2f& pos);
-    void desenharGolem(sf::RenderWindow& janela, const sf::Vector2f& pos);
-    void desenharDragon(sf::RenderWindow& janela, const sf::Vector2f& pos);
+    void desenharGoblin(RenderWindow& janela, const Vector2f& pos);
+    void desenharSkeleton(RenderWindow& janela, const Vector2f& pos);
+    void desenharSpider(RenderWindow& janela, const Vector2f& pos);
+    void desenharGolem(RenderWindow& janela, const Vector2f& pos);
+    void desenharDragon(RenderWindow& janela, const Vector2f& pos);
 };
 
 #endif

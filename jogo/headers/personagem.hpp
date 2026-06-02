@@ -3,7 +3,7 @@
 #define PERSONAGEM_HPP
 #include "entidade.hpp"
 #include "skilltree.hpp"
-
+using namespace std;
 class Personagem : public Entidade {
     protected:
         int velocidade;
@@ -11,7 +11,7 @@ class Personagem : public Entidade {
         SkillTree skillTree;  // associação: Personagem TEM UMA SkillTree
 
     public:
-        Personagem(std::string nome, int vidaMax, int velocidade);
+        Personagem(string nome, int vidaMax, int velocidade);
 
         // ainda abstrato — Mago vai implementar
         virtual void atacar(Entidade* alvo) = 0;

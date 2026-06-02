@@ -2,6 +2,7 @@
 #define INIMIGO_HPP
 #include "entidade.hpp"
 #include <string>
+using namespace std;
 
 enum TipoInimigo { 
     GOBLIN, ESQUELETO, GOLEM, DRAGAO 
@@ -18,7 +19,7 @@ class Inimigo : public Entidade {
         int danoQueimadura;
 
     public:
-        Inimigo(std::string nome, int vidaMax, int dano,
+        Inimigo(string nome, int vidaMax, int dano,
                 int defesa, int xp, TipoInimigo tipo);
 
         // sobrescrita dos virtuais puros de Entidade

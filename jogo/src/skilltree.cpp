@@ -1,6 +1,7 @@
 // skilltree.cpp
 #include "../headers/skilltree.hpp"
 #include <iostream>
+using namespace std;
 
 int SkillTree::totalDesbloqueios = 0;
 
@@ -28,11 +29,11 @@ bool SkillTree::desbloquearMagia(int indice) {
 
 void SkillTree::exibirArvore() const {
     for (int i = 0; i < (int)magias.size(); i++) {
-        std::string status = magias[i]->estaDesbloqueada() ? "[OK]" : "[" + std::to_string(custosPontos[i]) + "pt]";
-        std::cout << i+1 << ". " << status << " " << magias[i]->getNome()
+        string status = magias[i]->estaDesbloqueada() ? "[OK]" : "[" + to_string(custosPontos[i]) + "pt]";
+        cout << i+1 << ". " << status << " " << magias[i]->getNome()
                   << " - " << magias[i]->getDescricao() << "\n";
     }
-    std::cout << "Pontos disponíveis: " << pontosDisponiveis << "\n";
+    cout << "Pontos disponíveis: " << pontosDisponiveis << "\n";
 }
 
 Magia* SkillTree::getMagia(int indice) {

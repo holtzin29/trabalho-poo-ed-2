@@ -15,6 +15,8 @@
 #include "mapa.hpp"
 #include "mago_pixel.hpp"
 #include "inimigo_pixel.hpp"
+using namespace std;
+using namespace sf;
 
 enum EstadoJogo {
     MENU_PRINCIPAL,
@@ -28,38 +30,39 @@ enum EstadoJogo {
 
 class Jogo {
 private:
-    sf::RenderWindow janela;
-    sf::Font fonte;
+    RenderWindow janela;
+    Font fonte;
     EstadoJogo estado;
 
     // jogador
-    std::unique_ptr<Mago> jogador;
-    std::unique_ptr<MagoPixel> jogadorPixel;
-    std::string nomeTemp;
+    Mago *jogador;
+    MagoPixel *jogadorPixel;
+    string nomeTemp;
 
     // inimigo atual
-    std::unique_ptr<Inimigo> inimigo;
-    std::unique_ptr<InimigoPixel> inimigoPixel;
+    Inimigo *inimigo;
+    InimigoPixel * inimigoPixel;
     int rodada;
     int xpTotal;
 
     // mapa
-    std::unique_ptr<Mapa> mapa;
+    Mapa * mapa;
     int faseAtual;
 
     // combate
     int magiaSelecionada;
-    std::vector<std::string> logCombate;
+    vector<string> logCombate;
     bool turnoJogador;
     float temporizadorInimigo; // delay antes do inimigo agir
+    float tempoMovimento;      // tempo entre movimentos contínuos
 
     // seleção de tipo
     int tipoSelecionado; // 0-3
 
     // cores por elemento
-    sf::Color corElemento() const;
-    std::string nomeElemento() const;
-    std::string emojiBoss() const;
+    Color corElemento() const;
+    string nomeElemento() const;
+    string emojiBoss() const;
 
     // desenho de cada estado
     void desenharMenu();
@@ -71,19 +74,20 @@ private:
     void desenharVitoria();
 
     // helpers de desenho
-    void desenharBarraHP(float x, float y, float largura, int hp, int hpMax, sf::Color cor);
+    void desenharBarraHP(float x, float y, float largura, int hp, int hpMax, Color cor);
     void desenharBarraMP(float x, float y, float largura, int mp, int mpMax);
     void desenharHUD();
     void desenharLog();
-    void adicionarLog(const std::string& msg);
+    void adicionarLog(const string& msg);
 
     // lógica
-    void criarJogador(int tipo, const std::string& nome);
+    void criarJogador(int tipo, const string& nome);
     void iniciarRodada();
     void usarMagia(int indice);
     void turnoInimigo();
     void verificarFimCombate();
     void processarXP(int xp);
+    void atualizarMovimento(float dt);
 
 public:
     Jogo();

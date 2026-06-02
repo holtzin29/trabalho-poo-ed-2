@@ -1,8 +1,9 @@
 // personagem.cpp
 #include "../headers/personagem.hpp"
 #include <iostream>
+using namespace std;
 
-Personagem::Personagem(std::string nome, int vidaMax, int velocidade)
+Personagem::Personagem(string nome, int vidaMax, int velocidade)
     : Entidade(nome, vidaMax), velocidade(velocidade), pontosHabilidade(0) {}
 
 void Personagem::receberDano(int dano) {

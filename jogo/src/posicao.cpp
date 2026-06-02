@@ -1,5 +1,6 @@
 #include "../headers/posicao.hpp"
 #include <iostream>
+using namespace std;
 
 Posicao::Posicao() : x(0), y(0) {
 

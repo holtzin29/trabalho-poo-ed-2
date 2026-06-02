@@ -1,4 +1,5 @@
 #include "../headers/fabrica_inimigos.hpp"
+using namespace std;
 
 int FabricaInimigos::totalCriado = 0;
 

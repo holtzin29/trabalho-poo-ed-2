@@ -1,4 +1,6 @@
 #include "headers/jogo.hpp"
+using namespace std;
+using namespace sf;
 
 int main() {
     Jogo jogo;

@@ -1,7 +1,8 @@
 #include "../headers/magos/mago_agua.hpp"
 #include "../headers/magias/magias_agua.hpp"
+using namespace std;
 
-MagoAgua::MagoAgua(std::string nome)
+MagoAgua::MagoAgua(string nome)
     : Mago(nome, 90, 100, 4, AGUA) {
     inicializarMagias();
 }

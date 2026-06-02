@@ -1,9 +1,11 @@
 #include "../headers/mapa.hpp"
 #include <cstdlib>
 #include <ctime>
+using namespace std;
+using namespace sf;
 
 Mapa::Mapa(int f) : fase(f) {
-    tiles.resize(ALTURA, std::vector<TileType>(LARGURA));
+    tiles.resize(ALTURA, vector<TileType>(LARGURA));
     
     switch(fase) {
         case 1: gerarFase1(); break;
@@ -99,29 +101,30 @@ TileType Mapa::getTile(int x, int y) const {
     return tiles[y][x];
 }
 
-sf::Vector2f Mapa::getPixelPosition(int gridX, int gridY) const {
-    return sf::Vector2f(gridX * TAMANHO_TILE + 100, gridY * TAMANHO_TILE + 50);
+Vector2f Mapa::getPixelPosition(int gridX, int gridY) const {
+    return Vector2f(gridX * TAMANHO_TILE + X_OFFSET,
+                    gridY * TAMANHO_TILE + Y_OFFSET);
 }
 
-sf::Color Mapa::getCorTile(TileType tipo) const {
+Color Mapa::getCorTile(TileType tipo) const {
     switch(tipo) {
-        case TILE_GRASS:    return sf::Color(34, 139, 34);      // Verde escuro
-        case TILE_FOREST:   return sf::Color(0, 100, 0);        // Verde muito escuro
-        case TILE_WATER:    return sf::Color(30, 144, 255);     // Azul
-        case TILE_MOUNTAIN: return sf::Color(128, 128, 128);    // Cinza
-        case TILE_STONE:    return sf::Color(169, 169, 169);    // Cinza claro
-        case TILE_LAVA:     return sf::Color(255, 69, 0);       // Laranja vermelho
-        case TILE_SAND:     return sf::Color(210, 180, 140);    // Areia
-        default:            return sf::Color(100, 100, 100);
+        case TILE_GRASS:    return Color(34, 139, 34);      // Verde escuro
+        case TILE_FOREST:   return Color(0, 100, 0);        // Verde muito escuro
+        case TILE_WATER:    return Color(30, 144, 255);     // Azul
+        case TILE_MOUNTAIN: return Color(128, 128, 128);    // Cinza
+        case TILE_STONE:    return Color(169, 169, 169);    // Cinza claro
+        case TILE_LAVA:     return Color(255, 69, 0);       // Laranja vermelho
+        case TILE_SAND:     return Color(210, 180, 140);    // Areia
+        default:            return Color(100, 100, 100);
     }
 }
 
-void Mapa::desenharTile(sf::RenderWindow& janela, int x, int y, TileType tipo) {
-    float pixelX = x * TAMANHO_TILE + 100;
-    float pixelY = y * TAMANHO_TILE + 50;
+void Mapa::desenharTile(RenderWindow& janela, int x, int y, TileType tipo) {
+    float pixelX = x * TAMANHO_TILE + X_OFFSET;
+    float pixelY = y * TAMANHO_TILE + Y_OFFSET;
     
     // Desenha o tile base
-    sf::RectangleShape tile(sf::Vector2f(TAMANHO_TILE - 1, TAMANHO_TILE - 1));
+    RectangleShape tile(Vector2f(TAMANHO_TILE - 1, TAMANHO_TILE - 1));
     tile.setPosition(pixelX, pixelY);
     tile.setFillColor(getCorTile(tipo));
     janela.draw(tile);
@@ -129,22 +132,22 @@ void Mapa::desenharTile(sf::RenderWindow& janela, int x, int y, TileType tipo) {
     // Desenha efeitos visuais para certos tiles
     if (tipo == TILE_FOREST) {
         // Desenha árvore simples
-        sf::RectangleShape trunk(sf::Vector2f(4, 8));
+        RectangleShape trunk(Vector2f(4, 8));
         trunk.setPosition(pixelX + 14, pixelY + 16);
-        trunk.setFillColor(sf::Color(139, 69, 19));
+        trunk.setFillColor(Color(139, 69, 19));
         janela.draw(trunk);
         
         // Copa da árvore
-        sf::CircleShape copa(6);
+        CircleShape copa(6);
         copa.setPosition(pixelX + 10, pixelY + 8);
-        copa.setFillColor(sf::Color(0, 100, 0));
+        copa.setFillColor(Color(0, 100, 0));
         janela.draw(copa);
     }
     else if (tipo == TILE_LAVA) {
         // Efeito de lava com padrão
-        sf::RectangleShape lavaGlint(sf::Vector2f(6, 6));
+        RectangleShape lavaGlint(Vector2f(6, 6));
         lavaGlint.setPosition(pixelX + 8, pixelY + 8);
-        lavaGlint.setFillColor(sf::Color(255, 200, 0));
+        lavaGlint.setFillColor(Color(255, 200, 0));
         janela.draw(lavaGlint);
         
         lavaGlint.setPosition(pixelX + 20, pixelY + 20);
@@ -152,19 +155,19 @@ void Mapa::desenharTile(sf::RenderWindow& janela, int x, int y, TileType tipo) {
     }
     else if (tipo == TILE_MOUNTAIN) {
         // Pico da montanha
-        sf::ConvexShape pico(3);
-        pico.setPoint(0, sf::Vector2f(16, 4));
-        pico.setPoint(1, sf::Vector2f(4, 28));
-        pico.setPoint(2, sf::Vector2f(28, 28));
+        ConvexShape pico(3);
+        pico.setPoint(0, Vector2f(16, 4));
+        pico.setPoint(1, Vector2f(4, 28));
+        pico.setPoint(2, Vector2f(28, 28));
         pico.setPosition(pixelX, pixelY);
-        pico.setFillColor(sf::Color(192, 192, 192));
+        pico.setFillColor(Color(192, 192, 192));
         janela.draw(pico);
     }
     else if (tipo == TILE_WATER) {
         // Onda da água
-        sf::RectangleShape onda(sf::Vector2f(8, 2));
+        RectangleShape onda(Vector2f(8, 2));
         onda.setPosition(pixelX + 4, pixelY + 14);
-        onda.setFillColor(sf::Color(100, 200, 255));
+        onda.setFillColor(Color(100, 200, 255));
         janela.draw(onda);
         
         onda.setPosition(pixelX + 18, pixelY + 20);
@@ -172,7 +175,7 @@ void Mapa::desenharTile(sf::RenderWindow& janela, int x, int y, TileType tipo) {
     }
 }
 
-void Mapa::desenhar(sf::RenderWindow& janela) {
+void Mapa::desenhar(RenderWindow& janela) {
     for (int y = 0; y < ALTURA; y++) {
         for (int x = 0; x < LARGURA; x++) {
             desenharTile(janela, x, y, tiles[y][x]);

@@ -1,5 +1,5 @@
 #include "../headers/atributos.hpp"
-
+using namespace std;
 // Define static member variable
 int Atributos::totalCriados = 0;
 

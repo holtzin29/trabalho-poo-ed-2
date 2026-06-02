@@ -1,7 +1,8 @@
 #include "../headers/magos/mago_ar.hpp"
 #include "../headers/magias/magias_ar.hpp"
+using namespace std;
 
-MagoAr::MagoAr(std::string nome)
+MagoAr::MagoAr(string nome)
     : Mago(nome, 75, 110, 7, AR) {
     inicializarMagias();
 }

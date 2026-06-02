@@ -1,8 +1,9 @@
 // mago.cpp
 #include "../headers/mago.hpp"
 #include <iostream>
+using namespace std;
 
-Mago::Mago(std::string nome, int vidaMax, int manaMax, int velocidade, TipoMago tipo)
+Mago::Mago(string nome, int vidaMax, int manaMax, int velocidade, TipoMago tipo)
     : Personagem(nome, vidaMax, velocidade), mana(manaMax), manaMaxima(manaMax), tipo(tipo) {}
 
 void Mago::atacar(Entidade* alvo) {
@@ -14,33 +15,33 @@ void Mago::atacar(Entidade* alvo) {
             return;
         }
     }
-    std::cout << nome << " não tem mana suficiente!\n";
+    cout << nome << " não tem mana suficiente!\n";
 }
 
 void Mago::usarMagia(int indice, Entidade* alvo) {
     Magia* m = skillTree.getMagia(indice);
-    if (!m) { std::cout << "Magia inválida.\n"; return; }
-    if (!m->estaDesbloqueada()) { std::cout << "Magia bloqueada.\n"; return; }
-    if (!gastarMana(m->getCustoMana())) { std::cout << "Mana insuficiente.\n"; return; }
+    if (!m) { cout << "Magia invalida.\n"; return; }
+    if (!m->estaDesbloqueada()) { cout << "Magia bloqueada.\n"; return; }
+    if (!gastarMana(m->getCustoMana())) { cout << "Mana insuficiente.\n"; return; }
     m->lancar(this, alvo);
 }
 
 void Mago::receberDano(int dano) {
     // agilidade reduz dano em 10% por ponto acima de 5
     int reducao = (atributos.getAgilidade() - 5) * 2;
-    int danoFinal = std::max(1, dano - reducao);
+    int danoFinal = max(1, dano - reducao);
     setVida(vida - danoFinal);
 }
 
 void Mago::exibirStatus() const {
-    std::cout << "[ " << nome << " ] "
+    cout << "[ " << nome << " ] "
               << "HP: " << vida << "/" << vidaMaxima << " "
               << "MP: " << mana << "/" << manaMaxima << " "
               << "Nv: " << nivel << "\n";
 }
 
 void Mago::regenerarMana() {
-    mana = std::min(manaMaxima, mana + atributos.getRegeneracao());
+    mana = min(manaMaxima, mana + atributos.getRegeneracao());
 }
 
 bool Mago::gastarMana(int custo) {

@@ -1,8 +1,9 @@
 // magofogo.cpp
 #include "../headers/magos/mago_fogo.hpp"
 #include "../headers/magias/magias_fogo.hpp"
+using namespace std;
 
-MagoFogo::MagoFogo(std::string nome)
+MagoFogo::MagoFogo(string nome)
     : Mago(nome, 80, 120, 5, FOGO) {
     inicializarMagias();
 }

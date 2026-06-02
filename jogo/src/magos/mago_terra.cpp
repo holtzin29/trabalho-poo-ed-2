@@ -1,7 +1,8 @@
 #include "../headers/magos/mago_terra.hpp"
 #include "../headers/magias/magias_terra.hpp"
+using namespace std;
 
-MagoTerra::MagoTerra(std::string nome)
+MagoTerra::MagoTerra(string nome)
     : Mago(nome, 110, 90, 3, TERRA) {
     inicializarMagias();
 }
